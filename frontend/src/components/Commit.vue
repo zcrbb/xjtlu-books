@@ -2,8 +2,8 @@
   <v-container class="fill-height" fluid>
     <v-row align-center justify-center>
       <v-col xs12 sm8 md4>
-        <v-card class="mx-auto" max-width="600">
-          <v-toolbar color="success" dark flat>
+        <v-card class="mx-auto" max-width="76vw">
+          <v-toolbar color="indigo" dark flat>
             <v-toolbar-title>请留言</v-toolbar-title>
           </v-toolbar>
 
@@ -31,7 +31,15 @@
             <span class="grey--text text--lighten-1 ml-3">*请不要使用不文明词汇</span>
             <span class="text"></span>
             <v-spacer></v-spacer>
-            <v-btn color="primary" type="submit" form="login-form" :loading="loading" depressed large outlined>提交</v-btn>
+            <v-btn
+              color="primary"
+              type="submit"
+              form="login-form"
+              :loading="loading"
+              depressed
+              large
+              outlined
+            >提交</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>

@@ -1,7 +1,7 @@
 <template>
   <v-app-bar app color="error" dark>
     <v-icon large>mdi-book-minus-multiple</v-icon>
-    <v-toolbar-title class="ml-5">我们不需要太多无用的课本</v-toolbar-title>
+    <v-toolbar-title class="ml-5">拒绝学校强制购买课本</v-toolbar-title>
     <v-spacer></v-spacer>
 
     <v-menu offset-y>

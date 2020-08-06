@@ -1,9 +1,13 @@
 <template>
-  <v-card width="100vw" height="95vh" class="indigo">
+  <v-card width="100vw" height="100vh" class="indigo">
     <v-container fill-height fluid>
-      <v-row justify="center">
-        <span class="text-h1 white--text">希望西浦永远</span>
-        <span class="text-h1 white--text pt-5">light and wings</span>
+      <v-row align="end" justify="center" >
+        <v-col cols="12" class="text-center">
+          <div class="text-h1 white--text">希望西浦永远</div>
+        </v-col>
+        <v-col cols="12" class="text-center">
+          <div class="text-h1 white--text pt-5">light and wings</div>
+        </v-col>
       </v-row>
     </v-container>
   </v-card>
@@ -14,5 +18,4 @@ export default {};
 </script>
 
 <style>
-
 </style>

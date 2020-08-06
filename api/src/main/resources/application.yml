@@ -7,4 +7,6 @@ spring:
         time-zone: GMT+8
     data:
         mongodb:
-            uri: mongodb://localhost:27017/xjtlu-book
+            uri: mongodb://aruix:xingyudong@aruix.world/
+            authentication-database: admin
+            database: xjtlu-book

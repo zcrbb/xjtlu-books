@@ -1,9 +1,9 @@
 <template>
   <div>
     <Index></Index>
-    <v-app-bar app color="error" dark flat scrollable>
+    <v-app-bar app color="error" dark flat hide-on-scroll>
       <v-icon large>mdi-book-minus-multiple</v-icon>
-      <v-toolbar-title class="ml-5">我们不需要太多无用的课本</v-toolbar-title>
+      <v-toolbar-title class="ml-5">拒绝学校强制购买课本</v-toolbar-title>
       <v-spacer></v-spacer>
 
       <v-menu offset-y>
@@ -19,14 +19,11 @@
         </v-list>
       </v-menu>
 
-      <v-btn href="https://github.com/vuetifyjs/vuetify/releases/latest" target="_blank" text>
+      <v-btn href="https://github.com/zcrbb/xjtlu-books" target="_blank" text>
         <span class="mr-2">source code here</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar>
-    <v-footer color="error" app>
-      <span class="white--text">希望XJTLU能在师生的共同努力下越来越好 &copy;</span>
-    </v-footer>
 
     <v-container>
       <v-row class="text-justify">
@@ -40,11 +37,27 @@
           </v-tooltip>, 但是这样的书本 大部分学生一个学期都未曾拆开封面, 最后只能非常惋惜的遗弃
         </v-col>
         <v-col>这样的情况绝非少见</v-col>
+        <v-col>
+          <iframe
+            width="640px"
+            height="480px"
+            src="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAMAABMsmTdUNTY1MUdORVJYWVZPVFRLVzlPTlVNUU05TS4u&embed=true"
+            frameborder="0"
+            marginwidth="0"
+            marginheight="0"
+            style="border: none; max-width:100%; max-height:100vh"
+            allowfullscreen
+            webkitallowfullscreen
+            mozallowfullscreen
+            msallowfullscreen
+          ></iframe>
+        </v-col>
       </v-row>
     </v-container>
 
-    <Commit></Commit>
+    <Count></Count>
     <Reason></Reason>
+    <Commit></Commit>
     <Light></Light>
   </div>
 </template>
@@ -53,7 +66,8 @@
 import Commit from "../components/Commit";
 import Reason from "../components/Reason";
 import Light from "../components/Light";
-import Index from "../views/Index";
+import Index from "../components/Index";
+import Count from "../components/Count";
 
 export default {
   name: "Zh",
@@ -70,6 +84,7 @@ export default {
     Reason,
     Index,
     Light,
+    Count,
   },
 };
 </script>
