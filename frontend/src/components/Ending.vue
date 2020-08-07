@@ -1,12 +1,12 @@
 <template>
   <v-card width="100vw" height="100vh" class="indigo">
     <v-container fill-height fluid>
-      <v-row align="end" justify="center" >
+      <v-row align="end" justify="center">
         <v-col cols="12" class="text-center">
-          <div class="text-h1 white--text">希望西浦永远</div>
+          <div class="white--text haha">希望西浦永远</div>
         </v-col>
         <v-col cols="12" class="text-center">
-          <div class="text-h1 white--text pt-5">light and wings</div>
+          <div class="white--text haha">light and wings</div>
         </v-col>
       </v-row>
     </v-container>
@@ -18,4 +18,7 @@ export default {};
 </script>
 
 <style>
+.haha {
+  font-size: 11vw;
+}
 </style>

@@ -1,7 +1,5 @@
 package com.xjtlubooks.api.controller;
 
-import javax.websocket.server.PathParam;
-
 import com.xjtlubooks.api.dao.CountDAO;
 import com.xjtlubooks.api.entity.Count;
 
@@ -10,14 +8,15 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/count")
-@CrossOrigin
+@CrossOrigin(allowedHeaders = "*")
+
 public class CountController {
     @Autowired
     private CountDAO countDAO;
 
     @GetMapping("/")
-    public Long getCount() {
-        return countDAO.count();
+    public String getCount() {
+        return "{\"count\": " + countDAO.count() + "}";
     }
 
     @PostMapping("/add")

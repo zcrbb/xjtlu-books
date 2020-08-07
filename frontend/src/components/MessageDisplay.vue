@@ -6,7 +6,7 @@
           <v-card>
             <v-toolbar color="primary" dark flat dense class="text-center">
               <v-toolbar-title class="text-center">
-                <v-icon>mdi-star</v-icon>我不一定赞成每一个人的留言, 但是我觉得每个人想法都渴望被表达
+                <v-icon>mdi-star</v-icon>留言
               </v-toolbar-title>
             </v-toolbar>
             <v-container>
@@ -25,7 +25,7 @@
                           color="pink"
                           dark
                           depressed
-                          @click="commit.isLike=true"
+                          @click="commit.isLike=true;clickLike(commit.id);commit.likeNumber++"
                           v-if="!commit.isLike"
                         >
                           <v-icon>mdi-heart</v-icon>
@@ -60,6 +60,7 @@
 </template>
 
 <script>
+import Axios from "axios";
 export default {
   data() {
     return {
@@ -69,8 +70,11 @@ export default {
     };
   },
   created() {
-    axios.get("http://localhost:7022/commit/find/0/10").then((resp) => {
-      console.log(resp);
+    axios.get("commit/find/0/10").then((resp) => {
+      resp.data.content.forEach((element) => {
+        element.isLike = false;
+      });
+      // console.log(resp);
       this.commits = resp.data.content;
       this.totalPages = resp.data.totalPages;
     });
@@ -78,11 +82,12 @@ export default {
   methods: {
     selectPage(currPage) {
       currPage--;
-      axios
-        .get("http://localhost:7022/commit/find/" + currPage + "/10")
-        .then((resp) => {
-          this.commits = resp.data.content;
-        });
+      axios.get("commit/find/" + currPage + "/10").then((resp) => {
+        this.commits = resp.data.content;
+      });
+    },
+    clickLike(id) {
+      axios.get("commit/like/" + id);
     },
   },
 };

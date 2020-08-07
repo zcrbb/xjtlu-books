@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <!-- <appbar></appbar> -->
     <v-main>
       <router-view></router-view>
     </v-main>
@@ -8,6 +9,7 @@
 
 <script lang="ts">
 import Vue from "vue";
+import appbar from "./components/AppBar.vue";
 
 export default Vue.extend({
   name: "App",
@@ -15,5 +17,6 @@ export default Vue.extend({
   data: () => ({
     //
   }),
+  components: { appbar },
 });
 </script>

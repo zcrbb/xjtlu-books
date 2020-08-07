@@ -1,13 +1,13 @@
 <template>
-  <v-app-bar app color="error" dark>
-    <v-icon large>mdi-book-minus-multiple</v-icon>
-    <v-toolbar-title class="ml-5">拒绝学校强制购买课本</v-toolbar-title>
+  <v-app-bar app color="error" dark flat hide-on-scroll>
+    <v-icon>mdi-book-minus-multiple</v-icon>
+    <v-toolbar-title>拒绝学校强制购买课本</v-toolbar-title>
     <v-spacer></v-spacer>
 
     <v-menu offset-y>
       <template v-slot:activator="{ on, attrs }">
-        <v-btn text dark v-bind="attrs" v-on="on">
-          <v-icon class="mr-2">mdi-translate</v-icon>LANGUAGE
+        <v-btn icon dark v-bind="attrs" v-on="on">
+          <v-icon>mdi-translate</v-icon>
         </v-btn>
       </template>
       <v-list>
@@ -17,12 +17,10 @@
       </v-list>
     </v-menu>
 
-    <v-btn href="https://github.com/vuetifyjs/vuetify/releases/latest" target="_blank" text>
-      <span class="mr-2">code here</span>
+    <v-btn href="https://github.com/zcrbb/xjtlu-books" icon>
       <v-icon>mdi-open-in-new</v-icon>
     </v-btn>
   </v-app-bar>
-  
 </template>
 
 <script>

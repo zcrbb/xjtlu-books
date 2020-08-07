@@ -1,8 +1,9 @@
 <template>
   <v-container class="fill-height" fluid>
     <v-row align-center justify-center>
-      <v-col xs12 sm8 md4>
-        <v-card class="mx-auto" max-width="76vw">
+      <v-col cols="12">
+        <!-- 留言上传卡 -->
+        <v-card class="mx-auto" max-width="76vw" v-if="!isCommit">
           <v-toolbar color="indigo" dark flat>
             <v-toolbar-title>请留言</v-toolbar-title>
           </v-toolbar>
@@ -34,16 +35,37 @@
             <v-btn
               color="primary"
               type="submit"
-              form="login-form"
-              :loading="loading"
               depressed
               large
               outlined
+              @click="getAllMessage()"
             >提交</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
+      <v-col cols="12">
+        <v-card
+          class="mx-auto text-center text-h2"
+          dark
+          max-width="76vw"
+          height="350px"
+          v-if="isCommit"
+          color="indigo"
+        >
+          <v-container fill-height>
+            <v-row align="center" justify="center">
+              <v-col>感谢留言</v-col>
+            </v-row>
+          </v-container>
+        </v-card>
+      </v-col>
     </v-row>
+    <v-snackbar v-model="snackbar">
+      您已成功留言ヾ(≧▽≦*)o
+      <template v-slot:action="{ attrs }">
+        <v-btn color="red" text v-bind="attrs" @click="snackbar = false">Close</v-btn>
+      </template>
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -52,11 +74,14 @@ export default {
   name: "Login",
   data() {
     return {
+      snackbar: false,
+      isCommit: false,
       commitForm: {
         name: "",
         reason: "",
+        likeNumber: 0,
       },
-      loading: false,
+
       // 注册模式/登录模式
       nameRules: [
         (v) => {
@@ -72,18 +97,16 @@ export default {
     };
   },
   methods: {
-    commitInfo() {
-      this.$axios
-        .post("/login", {
-          username: this.loginForm.username,
-          password: this.loginForm.password,
-        })
-        .then((successResponse) => {
-          if (successResponse.data.code === 200) {
-            this.$router.replace({ path: "/index" });
-          }
-        })
-        .catch((failResponse) => {});
+    getAllMessage() {
+      axios.post("commit/save", this.commitForm).then((response) => {
+        if (response.data == true) {
+          this.snackbar = true;
+          this.commitForm.name = "";
+          this.commitForm.reason = "";
+          this.commitForm.likeNumber = 0;
+          this.isCommit = true;
+        }
+      });
     },
   },
 };

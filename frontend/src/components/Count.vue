@@ -1,23 +1,22 @@
 <template>
   <div>
-    <!-- <v-progress-linear buffer-value="50" stream color="error"></v-progress-linear> -->
     <v-container>
       <v-row align="center" justify="center">
         <v-col cols="12">
           <v-card color="primary">
-            <!-- <v-toolbar color="primary" flat>如果您支持本次活动, 请点个赞</v-toolbar> -->
             <v-container>
               <v-row align="center" justify="center">
                 <v-col cols="12">
                   <div class="text-center text-h1 pt-10 white--text">{{count}}</div>
                 </v-col>
-                <v-col cols="4">
+                <v-col sm="3" cols="8">
                   <v-text-field
                     :rules="countRules"
                     label="您的称呼"
-                    v-model="name"
+                    v-model="form.name"
                     single-line
                     solo
+                    width="100px"
                     class="mb-n8 pt-10"
                   ></v-text-field>
                 </v-col>
@@ -28,7 +27,7 @@
                       color="red darken-2"
                       v-if="!support"
                       large
-                      @click="snackbar = true;support=!support;count++"
+                      @click="snackbar = true;support=!support;sendCount()"
                     >我拒绝学校强制购买课本</v-btn>
                     <v-btn
                       dark
@@ -58,7 +57,7 @@
 </template>
 
 <script>
-import Axios from 'axios';
+import Axios from "axios";
 export default {
   data() {
     return {
@@ -66,23 +65,28 @@ export default {
       snackbar: false,
       text: "成功!",
       support: false,
-      name: "",
-      count: 500,
+      form: {
+        name: "",
+      },
+      count: null,
       countRules: [
         (v) => {
           return v.length >= 2 || "太短啦 / Too short";
         },
       ],
-      created() {
-        Axios.get("http://localhost:7022/count/")
-      },
-      methods: {
-        sendCount(){
-          this.count++;
-          Axios.post("http://localhost:7022/count/add")
-        }
-      },
     };
+  },
+  created() {
+    axios.get("/count/").then((response) => {
+      console.log(response);
+      this.count = response.data.count;
+    });
+  },
+  methods: {
+    sendCount() {
+      this.count++;
+      axios.post("count/add", this.form);
+    },
   },
 };
 </script>
